@@ -1,0 +1,185 @@
+<!doctype html><html lang="ru"><head><meta charset="UTF-8"><title>Webpack и Pug</title><link href="styles.b8a4fde85b03b4036228.css" rel="stylesheet"></head><body><div class="wrapper" id="wrapper"><header class="header" id="header"><div class="header__container"><nav class="header__nav"><ul class="header__menu header-menu list flex"><li class="header-menu__item"><a class="header-menu__link link" href="./index.html"><span class="header-menu__link-text">Главная</span></a></li><li class="header-menu__item"><a class="header-menu__link link" href="./multipage.html"><span class="header-menu__link-text">О нас</span></a></li></ul></nav></div></header><main class="main" id="main"><p id="copy-text">Код скопирован</p><section class="hero" id="hero"><div class="hero__container"><h1 class="hero__title">Webpack и Pug</h1><p class="hero__text">Проект на Webpack с установкой шаблонизатора Pug.</p></div></section><section class="webpack" id="webpack"><div class="webpack__container"><h2 class="webpack__title">Настройка Webpack и Pug</h2><ul class="webpack__list webpack-list list flex"><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-pug-1"><code>npm install --save-dev webpack webpack-cli webpack-dev-server</code></p><button class="webpack-list__btn btn" data-path="webpack-pug-1">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">Пример структуры сайта</h3><div class="webpack-list__wrap"><pre class="webpack-list__text text">src
+--layouts 
+----main.pug
+--pages
+----index.pug
+----about.pug
+--components
+----header.pug
+----footer.pug</pre></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">Пример структуры main.pug</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-pug-2">doctype html
+html(lang="ru")
+head
+meta(charset="UTF-8")
+title Webpack и Pug
+body
+  div#wrapper.wrapper
+    include ../components/header.pug
+    main#main.main
+    block content
+    include ../components/footer.pug</pre><button class="webpack-list__btn btn" data-path="webpack-pug-2">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">Пример структуры header.pug</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-pug-3">header#header.header
+  div.header__container
+    nav.header__nav
+      ul.header__menu.header-menu.list
+        li.header-menu__item
+          a(href='./index.html').header-menu__link.link
+            span.header-menu__link-text Главная
+        li.header-menu__item
+          a(href='./about.html').header-menu__link.link
+            span.header-menu__link-text О нас</pre><button class="webpack-list__btn btn" data-path="webpack-pug-3">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">Пример структуры footer.pug</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-pug-4">footer#footer.footer
+  div.footer__container
+    h2 This is FOOTER</pre><button class="webpack-list__btn btn" data-path="webpack-pug-4">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">Пример структуры index.pug</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-pug-5">block content
+  h2 Главная страница
+  p Добро пожаловать!</pre><button class="webpack-list__btn btn" data-path="webpack-pug-5">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">Пример структуры about.pug</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-pug-6">block content
+  h2 О нас
+  p Немного информации о нас.</pre><button class="webpack-list__btn btn" data-path="webpack-pug-6">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">webpack.config.js:</h3><pre class="webpack-list__text text">module: {
+  rules: [
+    {
+      test: /.pug$/,
+      use: ['pug-loader'],
+    },
+  ],
+},
+
+plugins: [
+  new HtmlWebpackPlugin({
+    filename: 'index.html',
+    template: './src/pages/index.pug',
+    inject: 'body',
+    templateParameters: {
+      title: "Main page"
+    }
+  }),
+  new HtmlWebpackPlugin({
+    filename: 'about.html',
+    template: './src/pages/about.pug',
+    inject: 'body',
+    templateParameters: {
+      title: "Second page"
+    }
+  }),
+],</pre></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">Полный webpack.config.js:</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-pug-7">const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const loader = require('sass-loader');
+
+const mode = process.env.NODE_ENV || 'development';
+const devMode = mode === 'development';
+const target = devMode ? 'web' : 'browserslist';
+const devtool = devMode ? 'source-map' : undefined;
+
+function getRandomFourDigitNumber() {
+  return Math.floor(Math.random() * 9000) + 1000;
+}
+
+module.exports = {
+  mode,
+  target,
+  devtool,
+  devServer: {
+    port: getRandomFourDigitNumber(),
+    open: true,
+    hot: true,
+  },
+  entry: ['@babel/polyfill', path.resolve(__dirname, 'src', 'js', 'scripts.js')],
+  output: {
+    path: path.resolve(__dirname, 'docs'),
+    clean: true,
+    filename: 'scripts.[contenthash].js',
+    assetModuleFilename: 'images/[name][ext]'
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.resolve(__dirname, 'src', 'pages', 'index.pug'),
+      inject: 'body',
+      templateParameters: {
+        title: "Webpack"
+      }
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'multipage.html',
+      template: path.resolve(__dirname, 'src', 'pages', 'multipage.pug'),
+      inject: 'body',
+      templateParameters: {
+        title: "Webpack и Pug"
+      }
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'styles.[contenthash].css',
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test: /.pug$/,
+        use: ['pug-loader'],
+      },
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+      },
+      {
+        test: /\.(c|sa|sc)ss$/i,
+        use: [
+          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [require("postcss-preset-env")]
+              }
+            }
+          },
+          "sass-loader"],
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]'
+        }
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+        use: [
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+              },
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: [0.65, 0.90],
+                speed: 4
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              webp: {
+                quality: 75
+              }
+            }
+          }
+        ],
+        type: "asset/resource",
+      },
+      {
+        test: /\.(?:js|mjs|cjs)$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            targets: "defaults",
+            presets: [
+              ['@babel/preset-env']
+            ]
+          }
+        }
+      }
+    ],
+  },
+}</pre><button class="webpack-list__btn btn" data-path="webpack-pug-7">Скопирвать</button></div></li></ul></div></section></main><footer class="footer" id="footer"><div class="footer__container"><p class="footer__text text">SSR © 2025</p></div></footer></div><script defer="defer" src="scripts.3c9609ba40027c611e89.js"></script></body></html>

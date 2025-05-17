@@ -1,0 +1,114 @@
+<!doctype html><html lang="ru"><head><meta charset="UTF-8"><title>Webpack</title><link href="styles.b8a4fde85b03b4036228.css" rel="stylesheet"></head><body><div class="wrapper" id="wrapper"><header class="header" id="header"><div class="header__container"><nav class="header__nav"><ul class="header__menu header-menu list flex"><li class="header-menu__item"><a class="header-menu__link link" href="./index.html"><span class="header-menu__link-text">Главная</span></a></li><li class="header-menu__item"><a class="header-menu__link link" href="./multipage.html"><span class="header-menu__link-text">О нас</span></a></li></ul></nav></div></header><main class="main" id="main"><p id="copy-text">Код скопирован</p><section class="hero" id="hero"><div class="hero__container"><h1 class="hero__title">Webpack</h1><p class="hero__text"><strong>Webpack&nbsp;&mdash; это статический модульный упаковщик для современных приложений JavaScript.</strong></p><p class="hero__text">Когда webpack обрабатывает приложение, он&nbsp;внутренне строит график зависимостей из&nbsp;одной или нескольких точек входа , а&nbsp;затем объединяет каждый модуль, необходимый вашему проекту, в&nbsp;один или несколько пакетов , которые являются статическими активами для обслуживания вашего контента.</p></div></section><section class="webpack" id="webpack"><div class="webpack__container"><h2 class="webpack__title">Настройка Webpack</h2><ol class="webpack__list webpack-list flex"><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-1"><code>npm init -y</code></p><button class="webpack-list__btn btn" data-path="webpack-1">Скопировать</button></div></li><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-2"><code>npm install webpack -D</code></p><button class="webpack-list__btn btn" data-path="webpack-2">Скопировать</button></div></li><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-3"><code>npm install webpack-cli webpack-dev-server -D</code></p><button class="webpack-list__btn btn" data-path="webpack-3">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">В package.json прописать:</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-4">"scripts": {
+  "start": "webpack serve", 
+  "build-dev": "webpack", 
+  "build-prod": "webpack --node-env=production", 
+  "clear": "rd /s /q docs"
+},</pre><button class="webpack-list__btn btn" data-path="webpack-4">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">Создать файл .browserslistrc прописать:</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-5">last 2 versions
+not dead
+&gt; 0.5%</pre><button class="webpack-list__btn btn" data-path="webpack-5">Скопировать</button></div></li><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-6">npm install --save-dev html-webpack-plugin</p><button class="webpack-list__btn btn" data-path="webpack-6">Скопировать</button></div><a class="webpack-list__link link" href="https://webpack.js.org/plugins/html-webpack-plugin/" target="_blank">Ссылка</a></li><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-7">npm install --save-dev html-loader</p><button class="webpack-list__btn btn" data-path="webpack-7">Скопировать</button></div><a class="webpack-list__link link" href="https://webpack.js.org/loaders/html-loader/" target="_blank">Ссылка</a></li><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-8">npm install --save-dev style-loader</p><button class="webpack-list__btn btn" data-path="webpack-8">Скопировать</button></div><a class="webpack-list__link link" href="https://webpack.js.org/loaders/style-loader/" target="_blank">Ссылка</a></li><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-9">npm install --save-dev css-loader</p><button class="webpack-list__btn btn" data-path="webpack-9">Скопировать</button></div><a class="webpack-list__link link" href="https://webpack.js.org/loaders/css-loader/" target="_blank">Ссылка</a></li><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-10">npm install --save-dev mini-css-extract-plugin</p><button class="webpack-list__btn btn" data-path="webpack-10">Скопировать</button></div><a class="webpack-list__link link" href="https://webpack.js.org/plugins/mini-css-extract-plugin/" target="_blank">Ссылка</a></li><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-11">npm install sass-loader sass -D</p><button class="webpack-list__btn btn" data-path="webpack-11">Скопировать</button></div><a class="webpack-list__link link" href="https://webpack.js.org/loaders/sass-loader/" target="_blank">Ссылка</a></li><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-12">npm install --save-dev postcss-loader postcss postcss-preset-env</p><button class="webpack-list__btn btn" data-path="webpack-12">Скопировать</button></div><a class="webpack-list__link link" href="https://webpack.js.org/loaders/postcss-loader/" target="_blank">Ссылка</a></li><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-13">npm install -D babel-loader @babel/core @babel/preset-env</p><button class="webpack-list__btn btn" data-path="webpack-13">Скопировать</button></div><a class="webpack-list__link link" href="https://webpack.js.org/loaders/babel-loader/" target="_blank">Ссылка</a></li><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-14">npm install --save @babel/polyfill</p><button class="webpack-list__btn btn" data-path="webpack-14">Скопировать</button></div><a class="webpack-list__link link" href="https://babeljs.io/docs/babel-polyfill" target="_blank">Ссылка</a></li><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-15">npm install image-webpack-loader --save-dev</p><button class="webpack-list__btn btn" data-path="webpack-15">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">Создать файл webpack.config.js:</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-16">const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const loader = require('sass-loader');
+const mode = process.env.NODE_ENV || 'development';
+const devMode = mode === 'development';
+const target = devMode ? 'web' : 'browserslist';
+const devtool = devMode ? 'source-map' : undefined;
+function getRandomFourDigitNumber() {
+  return Math.floor(Math.random() * 9000) + 1000;
+}
+module.exports = {
+  mode,
+  target,
+  devtool,
+  devServer: {
+    port: getRandomFourDigitNumber(),
+    open: true,
+    hot: true,
+  },
+  entry: ['@babel/polyfill', path.resolve(__dirname, 'src', 'js', 'scripts.js')],
+  output: {
+    path: path.resolve(__dirname, 'docs'),
+    clean: true,
+    filename: 'scripts.[contenthash].js',
+    assetModuleFilename: 'images/[name][ext]'
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'src', 'index.html'),
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'styles.[contenthash].css',
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+      },
+      {
+        test: /\.(c|sa|sc)ss$/i,
+        use: [
+          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [require("postcss-preset-env")]
+              }
+            }
+          },
+          "sass-loader"],
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]'
+        }
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+        use: [
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+              },
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: [0.65, 0.90],
+                speed: 4
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              webp: {
+                quality: 75
+              }
+            }
+          }
+        ],
+        type: "asset/resource",
+      },
+      {
+        test: /\.(?:js|mjs|cjs)$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            targets: "defaults",
+            presets: [
+              ['@babel/preset-env']
+            ]
+          }
+        }
+      }
+    ],
+  },
+}</pre><button class="webpack-list__btn btn" data-path="webpack-16">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">Установить normalize:</h3><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-17">npm install normalize.css</p><button class="webpack-list__btn btn" data-path="webpack-17">Скопировать</button></div><a class="webpack-list__link link" href="https://necolas.github.io/normalize.css/" target="_blank">Ссылка</a></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">В SCSS-файле прописать:</h3><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-18">@use "normalize.css";</p><button class="webpack-list__btn btn" data-path="webpack-18">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">В JS-файле прописать:</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-19">import '../index.html';
+import '../scss/styles.scss';</pre><button class="webpack-list__btn btn" data-path="webpack-19">Скопировать</button></div></li></ol></div></section></main><footer class="footer" id="footer"><div class="footer__container"><p class="footer__text text">SSR © 2025</p></div></footer></div><script defer="defer" src="scripts.3c9609ba40027c611e89.js"></script></body></html>

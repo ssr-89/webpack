@@ -1,0 +1,255 @@
+<!doctype html><html lang="ru"><head><meta charset="UTF-8"><title>Webpack - FULL</title><link rel="shortcut icon" href="../assets/webpack-favicon.ico" type="image/x-icon"><link href="styles.9c6c10c27ea099c54896.css" rel="stylesheet"></head><body><div class="wrapper" id="wrapper"><header class="header" id="header"><div class="header__container"><nav class="header__nav"><ul class="header__menu header-menu list flex"><li class="header-menu__item"><a class="header-menu__link link" href="./index.html"><span class="header-menu__link-text">Webpack</span></a></li><li class="header-menu__item"><a class="header-menu__link link" href="./multipage.html"><span class="header-menu__link-text">Webpack и Pug</span></a></li><li class="header-menu__item"><a class="header-menu__link link" href="./fullstack.html"><span class="header-menu__link-text">Webpack - FULL</span></a></li></ul></nav></div></header><main class="main" id="main"><section class="hero" id="hero"><div class="hero__container"><h1 class="hero__title title">Webpack - быстрая сборка</h1></div></section><section class="webpack" id="webpack"><div class="webpack__container"><h2 class="webpack__title">Быстрая сборка</h2><ul class="webpack__list webpack-list list flex"><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-full-1"><code>npm i -D webpack webpack-cli webpack-dev-server html-webpack-plugin html-loader style-loader mini-css-extract-plugin sass-loader sass postcss-loader postcss postcss-preset-env babel-loader @babel/core @babel/preset-env image-webpack-loader css-loader</code></p><button class="webpack-list__btn btn" data-path="webpack-full-1">Скопировать</button></div></li><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-full-2"><code>npm install --save @babel/polyfill normalize.css</code></p><button class="webpack-list__btn btn" data-path="webpack-full-2">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">В SCSS-файле прописать:</h3><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-full-3">@use "normalize.css";</p><button class="webpack-list__btn btn" data-path="webpack-full-3">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">В JS-файле прописать:</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-full-4">// import '../index.html';
+import '../scss/styles.scss';</pre><button class="webpack-list__btn btn" data-path="webpack-full-4">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">Создать файл .browserslistrc прописать:</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-full-5">last 2 versions
+not dead
+&gt; 0.5%</pre><button class="webpack-list__btn btn" data-path="webpack-full-5">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">В package.json прописать:</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-full-6">"scripts": {
+  "start": "webpack serve",
+  "build-dev": "webpack",
+  "build-prod": "webpack --node-env=production",
+  "clear": "rd /s /q docs"
+},</pre><button class="webpack-list__btn btn" data-path="webpack-full-6">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">webpack.config.js одностроничного сайта:</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-full-7">const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const loader = require('sass-loader');
+const mode = process.env.NODE_ENV || 'development';
+const devMode = mode === 'development';
+const target = devMode ? 'web' : 'browserslist';
+const devtool = devMode ? 'source-map' : undefined;
+function getRandomFourDigitNumber() {
+  return Math.floor(Math.random() * 9000) + 1000;
+}
+module.exports = {
+  mode,
+  target,
+  devtool,
+  devServer: {
+    port: getRandomFourDigitNumber(),
+    open: true,
+    hot: true,
+  },
+  entry: ['@babel/polyfill', path.resolve(__dirname, 'src', 'js', 'scripts.js')],
+  output: {
+    path: path.resolve(__dirname, 'docs'),
+    clean: true,
+    filename: 'scripts.[contenthash].js',
+    assetModuleFilename: 'images/[name][ext]'
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'src', 'index.html'),
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'styles.[contenthash].css',
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+      },
+      {
+        test: /\.(c|sa|sc)ss$/i,
+        use: [
+          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [require("postcss-preset-env")]
+              }
+            }
+          },
+          "sass-loader"],
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]'
+        }
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+        use: [
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+              },
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: [0.65, 0.90],
+                speed: 4
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              webp: {
+                quality: 75
+              }
+            }
+          }
+        ],
+        type: "asset/resource",
+      },
+      {
+        test: /\.(?:js|mjs|cjs)$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            targets: "defaults",
+            presets: [
+              ['@babel/preset-env']
+            ]
+          }
+        }
+      }
+    ],
+  },
+}</pre><button class="webpack-list__btn btn" data-path="webpack-full-7">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">Установка шаблонизатора Pug для многостраничного сайта:</h3><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-full-8"><code>npm i -D pug pug-loader</code></p><button class="webpack-list__btn btn" data-path="webpack-full-8">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">webpack.config.js многостроничного сайта:</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-full-9">const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const loader = require('sass-loader');
+
+const mode = process.env.NODE_ENV || 'development';
+const devMode = mode === 'development';
+const target = devMode ? 'web' : 'browserslist';
+const devtool = devMode ? 'source-map' : undefined;
+
+function getRandomFourDigitNumber() {
+  return Math.floor(Math.random() * 9000) + 1000;
+}
+
+module.exports = {
+  mode,
+  target,
+  devtool,
+  devServer: {
+    port: getRandomFourDigitNumber(),
+    open: true,
+    hot: true,
+  },
+  entry: ['@babel/polyfill', path.resolve(__dirname, 'src', 'js', 'scripts.js')],
+  output: {
+    path: path.resolve(__dirname, 'docs'),
+    clean: true,
+    filename: 'scripts.[contenthash].js',
+    assetModuleFilename: 'images/[name][ext]'
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.resolve(__dirname, 'src', 'pages', 'index.pug'),
+      inject: 'body',
+      templateParameters: {
+        title: "Webpack"
+      }
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'second.html',
+      template: path.resolve(__dirname, 'src', 'pages', 'second.pug'),
+      inject: 'body',
+      templateParameters: {
+        title: "Webpack и Pug"
+      }
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'styles.[contenthash].css',
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test: /.pug$/,
+        use: ['pug-loader'],
+      },
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+      },
+      {
+        test: /\.(c|sa|sc)ss$/i,
+        use: [
+          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [require("postcss-preset-env")]
+              }
+            }
+          },
+          "sass-loader"],
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]'
+        }
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+        use: [
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+              },
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: [0.65, 0.90],
+                speed: 4
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              webp: {
+                quality: 75
+              }
+            }
+          }
+        ],
+        type: "asset/resource",
+      },
+      {
+        test: /\.(?:js|mjs|cjs)$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            targets: "defaults",
+            presets: [
+              ['@babel/preset-env']
+            ]
+          }
+        }
+      }
+    ],
+  },
+}</pre><button class="webpack-list__btn btn" data-path="webpack-full-9">Скопирвать</button><li class="webpack-list__item"><h3 class="webpack-list__descr text">Пример структуры main.pug</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-full-10">doctype html
+html(lang="ru")
+head
+meta(charset="UTF-8")
+title Webpack - FULL
+body
+  div#wrapper.wrapper
+    include ../components/header.pug
+    main#main.main
+    block content
+    include ../components/footer.pug</pre><button class="webpack-list__btn btn" data-path="webpack-full-10">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">Пример структуры header.pug</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-full-11">header#header.header
+  nav
+    a(href="./index.html") Главная
+    a(href="./second.html") Вторая страница</pre><button class="webpack-list__btn btn" data-path="webpack-full-11">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">Пример структуры index.pug и последующих страниц:</h3><div class="webpack-list__wrap flex"><pre class="webpack-list__text text" data-target="webpack-full-12">extends ../layouts/main.pug
+block content
+  h2 Главная страница
+  p Добро пожаловать!</pre><button class="webpack-list__btn btn" data-path="webpack-full-12">Скопировать</button></div></li></div></li></ul></div></section></main><footer class="footer" id="footer"><div class="footer__container"><p class="footer__text text">SSR © 2025</p></div></footer></div><script defer="defer" src="scripts.6e60d9d3f1dc56729053.js"></script></body></html>

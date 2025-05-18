@@ -1,4 +1,4 @@
-<!doctype html><html lang="ru"><head><meta charset="UTF-8"><title>Webpack и Pug</title><link rel="icon" href="webpack-favicon.ico"><link href="styles.9c6c10c27ea099c54896.css" rel="stylesheet"></head><body><div class="wrapper" id="wrapper"><header class="header" id="header"><div class="header__container"><nav class="header__nav"><ul class="header__menu header-menu list flex"><li class="header-menu__item"><a class="header-menu__link link" href="./index.html"><span class="header-menu__link-text">Webpack</span></a></li><li class="header-menu__item"><a class="header-menu__link link" href="./multipage.html"><span class="header-menu__link-text">Webpack и Pug</span></a></li><li class="header-menu__item"><a class="header-menu__link link" href="./fullstack.html"><span class="header-menu__link-text">Webpack - FULL</span></a></li></ul></nav></div></header><main class="main" id="main"><p id="copy-text">Код скопирован</p><section class="hero" id="hero"><div class="hero__container"><h1 class="hero__title">Webpack и Pug</h1><p class="hero__text">Проект на Webpack с установкой шаблонизатора Pug.</p></div></section><section class="webpack" id="webpack"><div class="webpack__container"><h2 class="webpack__title">Настройка Webpack и Pug</h2><ul class="webpack__list webpack-list list flex"><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-pug-1"><code>npm install --save-dev webpack webpack-cli webpack-dev-server</code></p><button class="webpack-list__btn btn" data-path="webpack-pug-1">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">Пример структуры сайта</h3><div class="webpack-list__wrap"><pre class="webpack-list__text text">src
+<!doctype html><html lang="ru"><head><meta charset="UTF-8"><title>Webpack и Pug</title><link rel="icon" href="webpack-favicon.ico"><link href="styles.7918149441138508c3db.css" rel="stylesheet"></head><body><div class="wrapper" id="wrapper"><header class="header" id="header"><div class="header__container"><nav class="header__nav"><ul class="header__menu header-menu list flex"><li class="header-menu__item"><a class="header-menu__link link" href="./index.html"><span class="header-menu__link-text">Webpack</span></a></li><li class="header-menu__item"><a class="header-menu__link link" href="./multipage.html"><span class="header-menu__link-text">Webpack и Pug</span></a></li><li class="header-menu__item"><a class="header-menu__link link" href="./quick_assembly.html"><span class="header-menu__link-text">Webpack - FULL</span></a></li></ul></nav></div></header><main class="main" id="main"><p id="copy-text">Код скопирован</p><section class="hero" id="hero"><div class="hero__container"><h1 class="hero__title">Webpack и Pug</h1><p class="hero__text">Проект на Webpack с установкой шаблонизатора Pug.</p></div></section><section class="webpack" id="webpack"><div class="webpack__container"><h2 class="webpack__title">Настройка Webpack и Pug</h2><ul class="webpack__list webpack-list list flex"><li class="webpack-list__item"><div class="webpack-list__wrap flex"><p class="webpack-list__text text" data-target="webpack-pug-1"><code>npm install --save-dev webpack webpack-cli webpack-dev-server</code></p><button class="webpack-list__btn btn" data-path="webpack-pug-1">Скопировать</button></div></li><li class="webpack-list__item"><h3 class="webpack-list__descr text">Пример структуры сайта</h3><div class="webpack-list__wrap"><pre class="webpack-list__text text">src
 --layouts
 ----main.pug
 --pages
@@ -10,7 +10,7 @@
 html(lang="ru")
 head
 meta(charset="UTF-8")
-title Webpack и Pug
+title &num;{title}
 body
   div#wrapper.wrapper
     include ../components/header.pug
@@ -95,15 +95,15 @@ module.exports = {
       template: path.resolve(__dirname, 'src', 'pages', 'index.pug'),
       inject: 'body',
       templateParameters: {
-        title: "Webpack"
+        title: "Main"
       }
     }),
     new HtmlWebpackPlugin({
-      filename: 'multipage.html',
-      template: path.resolve(__dirname, 'src', 'pages', 'multipage.pug'),
+      filename: 'about.html',
+      template: path.resolve(__dirname, 'src', 'pages', 'about.pug'),
       inject: 'body',
       templateParameters: {
-        title: "Webpack и Pug"
+        title: "About us"
       }
     }),
     new MiniCssExtractPlugin({
@@ -184,4 +184,4 @@ module.exports = {
       }
     ],
   },
-}</pre><button class="webpack-list__btn btn" data-path="webpack-pug-7">Скопирвать</button></div></li></ul></div></section></main><footer class="footer" id="footer"><div class="footer__container"><p class="footer__text text">SSR © 2025</p></div></footer></div><script defer="defer" src="scripts.6e60d9d3f1dc56729053.js"></script></body></html>
+}</pre><button class="webpack-list__btn btn" data-path="webpack-pug-7">Скопирвать</button></div></li></ul></div></section></main><footer class="footer" id="footer"><div class="footer__container"><p class="footer__text text">SSR © 2025</p></div></footer></div><a class="back-to-up link" href="#header" id="up">▲</a><script defer="defer" src="scripts.dead2374230316611ff2.js"></script></body></html>
